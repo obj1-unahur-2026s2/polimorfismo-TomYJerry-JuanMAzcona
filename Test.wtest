@@ -1,0 +1,68 @@
+import tomYJerry.*
+
+
+describe "Tests de Tom Y Jerry (Parte 1)" {
+  test "La Velocicdad Máxima de Tom al principio es 10" {
+    assert.equals(10, tom.velocidadMaxima())
+  }
+
+  test "Tom come a Jerry y su Velocidad Máxima es 15.2" {
+    tom.comer(jerry)
+    assert.equals(15.2, tom.velocidadMaxima())
+  }
+
+  test "Luego corre 24 metros y su Velocidad Máxima ahora es 14" {
+    tom.comer(jerry)
+    tom.correr(24)
+    assert.equals(14, tom.velocidadMaxima())
+  }
+
+  test "Luego come a Nibbles y su Velocidad Máxima ahora es 18.7" {
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    assert.equals(18.7, tom.velocidadMaxima())
+  }
+
+  test "Luego Jerry cumple años y Tom lo vuelve a comer, entonces su Velocidad Máxima es 25.9" {
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    jerry.cumplirAnios()
+    tom.comer(jerry)
+    assert.equals(25.9, tom.velocidadMaxima())
+  }
+
+  test "Finalmente, Tom corre 38 metros y su Velocidad Máxima pasa a ser 24" {
+    tom.comer(jerry)
+    tom.correr(24)
+    tom.comer(nibbles)
+    jerry.cumplirAnios()
+    tom.comer(jerry)
+    tom.correr(38)
+    assert.equals(24, tom.velocidadMaxima())
+  }
+}
+
+describe "Tests de Tom y Jerry (Parte 2 y 3)" {
+  
+  test "Al principio, Tom puede cazar a un Ratón que este a 100 metros" {
+    assert.that(tom.puedeCazarADistancia(100))
+  }
+  test "Pero no puede cazar a un Ratón que este a más de 100 metros" {
+    assert.notThat(tom.puedeCazarADistancia(101))
+  }
+
+  test "Tom caza a Jerry, que esta a 100 metros. Entonces, la Velocidad Máxima de Tom pasa a ser 10.2" {
+    tom.cazar(jerry, 100)
+    assert.equals(10.2, tom.velocidadMaxima())
+  }
+
+  test "Luego, Perez come un queso, se ejercita y es cazado por Tom a una distancia de 25 metros; entonces la Velocidad Máxima de este último es de 14.15" {
+    tom.cazar(jerry, 100)
+    perez.comerQueso()
+    perez.ejercitarse()
+    tom.cazar(perez, 25)
+    assert.equals(14.15, tom.velocidadMaxima())
+  }
+}
